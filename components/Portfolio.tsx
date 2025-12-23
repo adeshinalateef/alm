@@ -7,42 +7,10 @@ import { ExternalLink, Github, X, Image as ImageIcon } from 'lucide-react';
 const Portfolio: React.FC = () => {
   const [filter, setFilter] = useState<Category>(Category.ALL);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [featuredId, setFeaturedId] = useState<string | null>(PROJECTS[0]?.id ?? null);
 
   const filteredProjects = filter === Category.ALL 
     ? PROJECTS 
     : PROJECTS.filter(p => p.category === filter);
-
-  useEffect(() => {
-    let mounted = true;
-    async function detectNewest() {
-      try {
-        const checks = await Promise.allSettled(PROJECTS.map(async (p) => {
-          try {
-            const res = await fetch(p.image, { method: 'HEAD', cache: 'no-store' });
-            if (!res.ok) return { id: p.id, ts: 0 };
-            const lm = res.headers.get('last-modified') || res.headers.get('date');
-            const ts = lm ? new Date(lm).getTime() : 0;
-            return { id: p.id, ts };
-          } catch (e) {
-            return { id: p.id, ts: 0 };
-          }
-        }));
-
-        const results = checks.map(r => r.status === 'fulfilled' ? r.value : { id: '', ts: 0 });
-        const best = results.reduce((acc, cur) => (cur.ts > acc.ts ? cur : acc), { id: featuredId ?? '', ts: 0 });
-        if (mounted && best.id) setFeaturedId(best.id);
-      } catch (err) {
-        // ignore — silent fallback to default
-      }
-    }
-
-    detectNewest();
-    return () => { mounted = false; };
-  }, []);
-
-  const featuredProject = PROJECTS.find(p => p.id === featuredId) || PROJECTS[0];
-  const gridProjects = filteredProjects.filter(p => p.id !== featuredProject?.id);
 
   return (
     <section id="portfolio" className="py-24 bg-site relative">
