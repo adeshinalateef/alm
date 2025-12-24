@@ -38,7 +38,7 @@ const TrainingCTA: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 100 }}
           transition={{ type: 'spring', stiffness: 100 }}
-          className={`fixed bottom-4 right-4 z-50 w-[calc(100%-2rem)] max-w-md rounded-2xl glass-panel p-6 ${TRAINING_CONFIG.blockSiteWhenOpen ? 'shadow-2xl' : ''}`}
+          className="fixed bottom-4 right-4 z-50 w-[calc(100%-2rem)] max-w-md rounded-2xl glass-panel p-6 shadow-2xl border border-white/10"
         >
           <button
             onClick={handleClose}

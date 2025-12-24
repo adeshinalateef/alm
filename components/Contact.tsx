@@ -32,10 +32,10 @@ const Contact: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-6">
               Let's <span className="text-secondary">Create</span> Something Extraordinary
             </h2>
-            <p className="text-muted-2 text-lg mb-10 leading-relaxed">
+            <p className="text-muted-2 mb-10 leading-relaxed">
               Have an idea? I'm currently available for freelance projects and other services. Let's discuss how we can elevate your digital presence.
             </p>
 
@@ -46,9 +46,9 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm text-muted-2">Email Me</p>
-                  <p className="font-medium text-lg">
-                    <a href="mailto:adeshinalateef200@gmail.com" className="hover:underline">adeshinalateef200@gmail.com</a>
-                  </p>
+                  <a href="mailto:adeshinalateef200@gmail.com" className="font-medium hover:text-primary transition-colors">
+                    adeshinalateef200@gmail.com
+                  </a>
                 </div>
               </div>
               
@@ -58,9 +58,9 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm text-muted-2">Call / WhatsApp</p>
-                  <p className="font-medium text-lg">
-                    <a href="tel:+2349012039810" className="hover:underline">+234 901 203 9810</a>
-                  </p>
+                  <a href="tel:+2349012039810" className="font-medium hover:text-primary transition-colors">
+                    +234 901 203 9810
+                  </a>
                 </div>
               </div>
 
@@ -70,7 +70,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm text-muted-2">Location</p>
-                  <p className="font-medium text-lg">Lagos, Nigeria</p>
+                  <p className="font-medium">Lagos, Nigeria</p>
                 </div>
               </div>
             </div>

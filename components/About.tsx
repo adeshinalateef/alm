@@ -46,11 +46,14 @@ const About: React.FC = () => {
               ))}
             </div>
 
-            <button className="flex items-center gap-2 text-secondary font-medium hover:text-foreground transition-colors group">
+            <a 
+              href="#contact" 
+              className="flex items-center gap-2 text-secondary font-medium hover:text-foreground transition-colors group"
+            >
               <Download size={18} />
               <span>Download Resume</span>
               <span className="block h-0.5 w-0 bg-secondary transition-all group-hover:w-full"></span>
-            </button>
+            </a>
           </div>
 
           {/* Right Chart */}

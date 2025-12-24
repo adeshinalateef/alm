@@ -46,98 +46,105 @@ export const SERVICES: Service[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: 'portfolio-ui-ux-developer',
+    title: 'UI/UX Frontend Developer Portfolio',
+    category: Category.WEB_DESIGN_DEVELOPMENT,
+    image: 'https://images.pexels.com/photos/29703202/pexels-photo-29703202.png',
+    description: 'A modern, responsive portfolio website showcasing frontend development skills with elegant UI/UX design and smooth animations.',
+    link: 'https://almuhaajirun.vercel.app/',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion']
+  },
+  {
+    id: 'sollah-project',
+    title: 'Sollah',
+    category: Category.WEB_DESIGN_DEVELOPMENT,
+    image: '/projects/WEB.png',
+    description: 'A prayer time management app that allows Muslims to manually update solat times and automatically generates beautiful flyers to share across the community.',
+    link: 'https://sollah.netlify.app/',
+    technologies: ['React', 'Web Development', 'Automated Design']
+  },
+  {
+    id: 'almuhaajirun-project',
+    title: 'Al-Muhaajirun Institute',
+    category: Category.WEB_DESIGN_DEVELOPMENT,
+    image: '/projects/UI UX.png',
+    description: 'An educational institute website dedicated to Islamic knowledge, calling Muslims to seek knowledge and spend in the cause of Allah through Dawah.',
+    link: 'https://almuhaajirun.netlify.app/',
+    technologies: ['React', 'Web Development', 'UI/UX Design']
+  },
+  {
     id: 'trifold-brochure-design',
     title: 'Trifold Brochure Design',
     category: Category.GRAPHICS,
     image: '/projects/a5-trifold-mockup.png',
-    description: '',
-    technologies: ['Brochure Design']
+    description: 'Professional trifold brochure with modern layout and compelling visual hierarchy.',
+    technologies: ['Brochure Design', 'Print Design']
   },
   {
     id: 'clean-browser-ui',
     title: 'Clean Browser UI',
     category: Category.GRAPHICS,
     image: '/projects/clean-browser-mockup.png',
-    description: '',
-    technologies: ['UI Design']
+    description: 'Sleek and intuitive browser interface design with focus on user experience.',
+    technologies: ['UI Design', 'Interface Design']
   },
   {
     id: 'futuristic-flyer-design',
     title: 'Futuristic Flyer Design',
     category: Category.GRAPHICS,
     image: '/projects/futuristic-floating-flyer-mockup-on-illuminated-platform-with-glowing-modern-background-0482.jpg',
-    description: '',
-    technologies: ['Flyer Design']
+    description: 'Modern event flyer with vibrant gradients and eye-catching typography.',
+    technologies: ['Flyer Design', 'Event Marketing']
   },
   {
     id: 'ipad-pro-mockup',
     title: 'iPad Pro Mockup',
     category: Category.GRAPHICS,
     image: '/projects/ipad-pro-mockup.png',
-    description: '',
-    technologies: ['Product Mockup']
+    description: 'Professional product mockup showcasing digital designs on iPad Pro.',
+    technologies: ['Product Mockup', 'Digital Presentation']
   },
   {
     id: 'large-poster-display',
     title: 'Large Poster Display',
     category: Category.GRAPHICS,
     image: '/projects/large-poster-on-wall.png',
-    description: '',
-    technologies: ['Poster Design']
+    description: 'Impactful poster design with bold imagery and compelling messaging.',
+    technologies: ['Poster Design', 'Print Media']
   },
   {
     id: 'business-card-design',
     title: 'Business Card Design',
     category: Category.GRAPHICS,
     image: '/projects/pastel-light-blocks-business-card-mockup-with-soft-shadows-and-creative-styling-0769.jpg',
-    description: '',
-    technologies: ['Business Card Design']
+    description: 'Elegant business card with pastel colors and modern aesthetic.',
+    technologies: ['Business Card Design', 'Brand Identity']
   },
   {
     id: 'poster-design',
     title: 'Poster Design',
     category: Category.GRAPHICS,
     image: '/projects/poster-design-mockup.png',
-    description: '',
-    technologies: ['Poster Design']
+    description: 'Creative poster design combining artistic elements with clear communication.',
+    technologies: ['Poster Design', 'Visual Communication']
   },
   {
     id: 'vertical-flyer-design',
     title: 'Vertical Flyer Design',
     category: Category.GRAPHICS,
     image: '/projects/professional-vertical-flyer-mockup-on-gradient-background-for-marketing-and-advertising-0470.jpg',
-    description: '',
-    technologies: ['Flyer Design']
+    description: 'Professional marketing flyer with strategic layout and visual hierarchy.',
+    technologies: ['Flyer Design', 'Marketing Materials']
   },
   {
     id: 'outdoor-billboard',
     title: 'Outdoor Billboard',
     category: Category.GRAPHICS,
     image: '/projects/sky-outdoor-nillboard-mockup(3).png',
-    description: '',
-    technologies: ['Billboard Design']
-  },
-  {
-    id: 'ui-ux-design-project',
-    title: 'UI/UX Design Project',
-    category: Category.WEB_DESIGN,
-    image: '/projects/UI UX.png',
-    description: '',
-    link: 'https://almuhaajirun.vercel.app/',
-    technologies: ['UI/UX Design']
-  },
-  {
-    id: 'web-development-project',
-    title: 'Web Development Project',
-    category: Category.PROGRAMMING,
-    image: '/projects/WEB.png',
-    description: '',
-    link: 'https://almuhaajirun.vercel.app/',
-    technologies: ['Web Development']
+    description: 'Large-format outdoor advertising design with maximum visual impact.',
+    technologies: ['Billboard Design', 'Outdoor Advertising']
   }
-];
-
-export const PROCESS_STEPS: Step[] = [
+    ];export const PROCESS_STEPS: Step[] = [
   { id: 1, title: 'Discovery', description: 'Detailed assessment of business goals, users, and technical constraints to align scope.' },
   { id: 2, title: 'Strategy', description: 'Define product strategy, architecture, and user flows with measurable outcomes.' },
   { id: 3, title: 'Development', description: 'Iterative implementation using agile sprints, continuous integration and review.' },
@@ -179,8 +186,8 @@ export const TRAINING = {
   phone: '+234 901 203 9810',
   title: 'Now Offering Professional Training!',
   description: 'Advance your career with our hands-on training programs. We offer courses in: Web Design, Graphics Design, Web Development, and Software Development. Register via WhatsApp to secure your spot!',
-  delayMs: 2500,
-  showEveryVisit: true
+  delayMs: 5000,
+  showEveryVisit: false
 };
 // Whether the training CTA should block site interaction when visible (modal).
 // Set to `false` to allow continuing to browse while the toast is visible.

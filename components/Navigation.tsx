@@ -2,30 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Code2, Sun, Moon } from 'lucide-react';
 import { SiWhatsapp } from 'react-icons/si';
 import { TRAINING } from '../constants';
-import { setUserTheme, getEffectiveTheme } from '../utils/theme';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLight, setIsLight] = useState<boolean>(() => {
-    try { return getEffectiveTheme() === 'light'; } catch { return false; }
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.classList.contains('light') ? 'light' : 'dark';
+    }
+    return 'dark';
   });
-  const [palette, setPalette] = useState<string>(() => {
-    try { return (localStorage.getItem('themePalette') as string) || 'natural'; } catch { return 'natural'; }
-  });
-
-  useEffect(() => {
-    // ensure palette class is present when light mode is active
-    try {
-      if (isLight) {
-        // always use the single 'natural' palette
-        document.documentElement.classList.add('natural');
-      } else {
-        document.documentElement.classList.remove('natural');
-      }
-    } catch {}
-  }, [isLight, palette]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,7 +52,7 @@ const Navigation: React.FC = () => {
           <div className="p-2 bg-primary rounded-lg group-hover:rotate-12 transition-transform">
             <Code2 className="text-foreground w-6 h-6" />
           </div>
-          <span className="text-xl font-heading font-bold tracking-wide">AAL</span>
+          <span className="text-xl font-heading font-bold tracking-wide">AlA</span>
         </a>
 
         {/* Desktop Menu */}
@@ -93,16 +80,20 @@ const Navigation: React.FC = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={() => {
-                const next = !isLight;
-                setIsLight(next);
-                // persist explicit user choice
-                setUserTheme(next ? 'light' : 'dark');
-                try { localStorage.setItem('themePalette', 'natural'); } catch {}
+                const newTheme = theme === 'dark' ? 'light' : 'dark';
+                if (newTheme === 'light') {
+                  document.documentElement.classList.add('light');
+                  localStorage.setItem('theme', 'light');
+                } else {
+                  document.documentElement.classList.remove('light');
+                  localStorage.removeItem('theme');
+                }
+                setTheme(newTheme);
               }}
               className="p-2 rounded-full btn-ghost hover:bg-white/10 transition-colors"
               title="Toggle theme"
             >
-              {isLight ? <Sun /> : <Moon />}
+              {theme === 'light' ? <Sun /> : <Moon />}
             </button>
           </div>
         </div>

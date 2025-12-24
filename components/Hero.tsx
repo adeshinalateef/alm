@@ -5,7 +5,7 @@ import { SiWhatsapp } from 'react-icons/si';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center pt-20">
       {/* Animated Background Blobs */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/30 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob" />
@@ -25,14 +25,14 @@ const Hero: React.FC = () => {
             </span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight">
             Building Digital <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-secondary">
               Masterpieces
             </span>
           </h1>
 
-          <p className="text-xl text-muted-2 max-w-2xl mx-auto mb-10 font-light">
+          <p className="text-lg sm:text-xl text-muted-2 max-w-2xl mx-auto mb-10 leading-relaxed">
             I'm <span className="text-foreground font-medium">Abdul Lateef Adeshina</span>, a multidisciplinary developer & designer crafting immersive web experiences 
             that combine aesthetic excellence with technical robustness.
           </p>

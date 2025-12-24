@@ -68,11 +68,11 @@ const Portfolio: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h4 className="text-white font-bold text-xl drop-shadow-md">{project.title}</h4>
-                  {project.description && <p className="text-sm text-white/80 line-clamp-2">{project.description}</p>}
-                  {project.link && (project.category === Category.WEB_DESIGN || project.category === Category.PROGRAMMING) && (
-                    <div className="mt-4">
-                      <span className="text-primary font-semibold">View Project &rarr;</span>
+                  <h4 className="text-white font-bold text-lg drop-shadow-md">{project.title}</h4>
+                  {project.description && <p className="text-sm text-white/80 line-clamp-2 mt-1">{project.description}</p>}
+                  {project.link && project.category === Category.WEB_DESIGN_DEVELOPMENT && (
+                    <div className="mt-3">
+                      <span className="text-secondary font-semibold text-sm">View Project &rarr;</span>
                     </div>
                   )}
                 </div>

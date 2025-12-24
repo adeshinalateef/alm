@@ -2,10 +2,8 @@ import { LucideIcon } from 'lucide-react';
 
 export enum Category {
   ALL = 'All',
-  WEB_DESIGN = 'Web Design',
-  DEVELOPMENT = 'Development',
-  PROGRAMMING = 'Programming',
-  GRAPHICS = 'Graphics'
+  WEB_DESIGN_DEVELOPMENT = 'Web Design and Development',
+  GRAPHICS = 'Graphics Design'
 }
 
 export interface Project {

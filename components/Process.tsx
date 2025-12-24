@@ -28,10 +28,10 @@ const Process: React.FC = () => {
                 }`}
               >
                 {/* Step Content */}
-                <div className="flex-1 md:text-right">
+                <div className={`flex-1 ${index % 2 !== 0 ? 'md:text-right' : ''}`}>
                    <div className={`glass-panel p-6 rounded-xl border-l-4 ${index % 2 !== 0 ? 'md:border-l-0 md:border-r-4' : ''} border-primary`}>
                      <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                     <p className="text-muted-2 text-sm">{step.description}</p>
+                     <p className="text-muted-2 text-sm leading-relaxed">{step.description}</p>
                    </div>
                 </div>
 

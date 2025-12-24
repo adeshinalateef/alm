@@ -1,179 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
-  <meta name="description" content="Abdul Lateef Adeshina — Design-led web development, UX/UI, and AI automation. Available for projects and hands-on training. Reach out on WhatsApp to get started." />
-  <meta property="og:title" content="Abdul Lateef Adeshina | Design & Web Development" />
-  <meta property="og:description" content="Abdul Lateef Adeshina — Design-led web development, UX/UI, and AI automation. Available for projects and hands-on training." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yourwebsite.com" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Abdul Lateef Adeshina — Design-led web development, UX/UI, and AI automation. Available for projects and hands-on training. Reach out on WhatsApp to get started." />
+    <meta property="og:title" content="Abdul Lateef Adeshina | Design & Web Development" />
+    <meta property="og:description" content="Abdul Lateef Adeshina — Design-led web development, UX/UI, and AI automation. Available for projects and hands-on training." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourwebsite.com" />
     <title>Abdul Lateef Adeshina | Creative Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://picsum.photos">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@18.2.0",
-    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-    "react-dom": "https://esm.sh/react-dom@18.2.0",
-    "framer-motion": "https://esm.sh/framer-motion@10.16.4?deps=react@18.2.0,react-dom@18.2.0",
-    "lucide-react": "https://esm.sh/lucide-react@0.292.0?deps=react@18.2.0,react-dom@18.2.0",
-    "recharts": "https://esm.sh/recharts@2.12.0?deps=react@18.2.0,react-dom@18.2.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
-  }
-}
-</script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              heading: ['Space Grotesk', 'sans-serif'],
-            },
-            colors: {
-              primary: '#00A9FF',
-              secondary: '#89CFF3',
-            },
-            animation: {
-              'blob': 'blob 7s infinite',
-            },
-            keyframes: {
-              blob: {
-                '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                '100%': { transform: 'translate(0px, 0px) scale(1)' },
-              }
-            }
-          }
-        }
-      }
-    </script>
+    
+    <!-- Theme initialization script -->
     <script>
       (function(){
         try {
-          if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light');
+          if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.add('light');
+          }
         } catch(e) {}
       })();
     </script>
-    <style>
-      :root {
-        --bg: #111827;
-        --text: #E5E7EB;
-        --glass: rgba(31, 41, 55, 0.2);
-        --glass-border: rgba(255, 255, 255, 0.1);
-        --scrollbar-track: #111827;
-        --scrollbar-thumb: #00A9FF;
-        --muted: #9CA3AF;
-        --muted-2: #6B7280;
-        --card-bg: rgba(31, 41, 55, 0.5);
-      }
-
-      .light {
-        --bg: #F9FAFB;
-        --text: #111827;
-        --glass: rgba(249, 250, 251, 0.5);
-        --glass-border: rgba(0, 0, 0, 0.1);
-        --scrollbar-track: #F9FAFB;
-        --scrollbar-thumb: #00A9FF;
-        --muted: #4B5563;
-        --muted-2: #6B7280;
-        --card-bg: rgba(255, 255, 255, 0.5);
-        --btn-bg: #00A9FF;
-        --btn-text: #FFFFFF;
-        --btn-border: transparent;
-        --btn-hover: #0087CC;
-      }
-
-      .text-muted { color: var(--muted) !important; }
-      .text-muted-2 { color: var(--muted-2) !important; }
-      .bg-card { background-color: var(--card-bg) !important; }
-      .bg-site { background-color: var(--bg) !important; }
-      .text-foreground { color: var(--text) !important; }
-
-      /* Ensure paragraph text is clearly visible in both themes */
-      p { color: var(--text) !important; }
-      /* Light mode: make paragraphs very dark and bold for legibility */
-      .light p { color: #0a0a0a !important; font-weight: 700 !important; }
-      .light p a { color: var(--btn-bg) !important; font-weight: 700 !important; }
-
-      .btn-primary { background: var(--btn-bg); color: var(--btn-text); border: 1px solid var(--btn-border); }
-      .btn-primary:hover { background: var(--btn-hover); }
-      .btn-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.06); color: var(--text); }
-
-      body {
-        background-color: var(--bg);
-        color: var(--text);
-      }
-
-      section {
-        scroll-margin-top: 80px;
-      }
-
-      .glass-panel {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid var(--glass-border);
-      }
-
-      .light .glass-panel { background: rgba(255,255,255,0.92); border-color: rgba(0,0,0,0.06); }
-      .light .btn-ghost { border-color: rgba(7,16,34,0.06); color: var(--text); }
-      .light .btn-primary { box-shadow: 0 6px 18px rgba(0, 169, 255, 0.12); }
-      .light .bg-card { background-color: var(--card-bg); }
-
-      /* Light palette variants */
-      .light.natural { /* Natural/Eco-Friendly (single light palette) */
-        --bg: #FAF5E9; --text: #064E2A; --glass: rgba(6,78,42,0.03); --btn-bg: #009B4D; --btn-text: #FFFFFF; --btn-hover: #007A3D;
-      }
-
-      /* Indicator (timeline step) contrast helpers */
-      .indicator { background: var(--card-bg); color: var(--secondary, #89CFF3); border-color: var(--secondary, #89CFF3); box-shadow: 0 0 15px rgba(137, 207, 243, 0.18); }
-      .light .indicator { background: var(--btn-bg); color: var(--btn-text); border-color: rgba(0,0,0,0.06); box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
-
-      /* Portfolio overlay: separate dark and light overlays to ensure text is legible on both image types */
-      .overlay-dark { background: linear-gradient(to top, rgba(17, 24, 39, 0.9), rgba(17, 24, 39, 0.5), transparent); }
-      .overlay-light { display: none; }
-      .light .overlay-dark { display: none; }
-      .light .overlay-light { display: block; background: linear-gradient(to top, rgba(249, 250, 251, 0.92), rgba(249, 250, 251, 0.7), transparent); }
-      .overlay-dark .project-title { color: #ffffff; font-size: 1rem; font-weight: 600; }
-      .overlay-light .project-title { color: var(--text); font-size: 1rem; font-weight: 600; }
-      .overlay-dark .project-category { color: var(--secondary); font-size: 1.25rem; font-weight: 700; }
-      .overlay-light .project-category { color: var(--text); font-size: 1.25rem; font-weight: 700; }
-
-      /* Ensure spacing at bottom on small cards */
-      .project-title { line-height: 1.1; }
-      .project-category { line-height: 1.05; }
-
-      /* Make animated blobs more visible in light mode */
-      .light .animate-blob { opacity: 0.5; mix-blend-mode: normal; }
-
-
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: var(--scrollbar-track);
-      }
-      ::-webkit-scrollbar-thumb {
-        background: var(--scrollbar-thumb);
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #89CFF3;
-      }
-    </style>
-  <link rel="stylesheet" href="/index.css">
-</head>
+  </head>
   <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
