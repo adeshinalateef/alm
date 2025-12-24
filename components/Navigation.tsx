@@ -121,7 +121,7 @@ const Navigation: React.FC = () => {
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: '100vh' }}
+            animate={{ opacity: 1, height: '100svh' }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden glass-panel border-t border-white/10"
           >
