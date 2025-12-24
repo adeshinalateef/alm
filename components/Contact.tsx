@@ -20,7 +20,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-site relative overflow-hidden">
+    <section id="contact" className="py-24 bg-site relative">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
       
