@@ -22,6 +22,52 @@ const Navigation: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Auto theme by West Africa Time (Africa/Lagos): dark 19:00–06:00, light otherwise
+  useEffect(() => {
+    const fromLagosHour = () => {
+      try {
+        const fmt = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Africa/Lagos',
+          hour: '2-digit',
+          hour12: false,
+        });
+        const parts = fmt.formatToParts(new Date());
+        const hourPart = parts.find(p => p.type === 'hour')?.value ?? '12';
+        return parseInt(hourPart, 10);
+      } catch {
+        return new Date().getHours();
+      }
+    };
+
+    const applyThemeForHour = (h: number) => {
+      const isDark = h >= 19 || h < 6; // 7pm–6am
+      const newTheme = isDark ? 'dark' : 'light';
+      if (newTheme === 'light') {
+        document.documentElement.classList.add('light');
+        localStorage.setItem('theme', 'light');
+        setTheme('light');
+      } else {
+        document.documentElement.classList.remove('light');
+        localStorage.removeItem('theme');
+        setTheme('dark');
+      }
+    };
+
+    // Only auto-apply if user hasn't explicitly chosen a theme
+    const stored = localStorage.getItem('theme');
+    if (!stored) {
+      applyThemeForHour(fromLagosHour());
+    }
+
+    const interval = setInterval(() => {
+      if (!localStorage.getItem('theme')) {
+        applyThemeForHour(fromLagosHour());
+      }
+    }, 60 * 1000); // check each minute
+
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.classList.add('overflow-hidden');

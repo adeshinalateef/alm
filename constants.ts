@@ -184,9 +184,9 @@ export const TRAINING = {
   enabled: true,
   whatsappUrl: 'https://wa.me/2349012039810?text=I%20want%20to%20register%20for%20the%20training',
   phone: '+234 901 203 9810',
-  title: 'Now Offering Professional Training!',
-  description: 'Advance your career with our hands-on training programs. We offer courses in: Web Design, Graphics Design, Web Development, and Software Development. Register via WhatsApp to secure your spot!',
-  delayMs: 5000,
+  title: 'Enroll Now: Web, Software, AI & Graphics Design Training',
+  description: 'Hands-on training now open! Topics include Web Design, Web Development, Software Development, AI fundamentals, and Graphics Design. Flexible schedules, practical projects, and portfolio-ready outcomes.',
+  delayMs: 4000,
   showEveryVisit: false
 };
 // Whether the training CTA should block site interaction when visible (modal).

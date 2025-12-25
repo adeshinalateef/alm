@@ -59,29 +59,21 @@ const Hero: React.FC = () => {
             </motion.a>
           </div>
 
-          <div className="flex justify-center gap-6 text-muted-2">
+          <div className="flex justify-center text-muted-2 mt-2">
             <motion.a
               whileHover={{ y: -3, color: '#00F0FF' }}
               href="https://github.com/Adeshina02"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors"
+              className="hover:text-foreground transition-colors inline-flex items-center justify-center w-10 h-10"
             >
-              <Github size={24} />
+              <Github size={28} />
             </motion.a>
           </div>
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
-      >
-        <ArrowDown className="text-muted-2" />
-      </motion.div>
-    </section>
+          </section>
   );
 };
 
