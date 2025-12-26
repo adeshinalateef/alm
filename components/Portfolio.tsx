@@ -67,7 +67,7 @@ const Portfolio: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 dark:from-black/80 to-transparent backdrop-blur-sm">
                   <h4 className="text-white font-bold text-lg drop-shadow-md">{project.title}</h4>
                   {project.description && <p className="text-sm text-white/80 line-clamp-2 mt-1">{project.description}</p>}
                   {project.link && project.category === Category.WEB_DESIGN_DEVELOPMENT && (
@@ -109,7 +109,7 @@ const Portfolio: React.FC = () => {
                   </button>
                 </div>
                 <p className="text-sm text-muted mb-4">{selectedProject.category}</p>
-                {selectedProject.description && <p className="text-muted-2 leading-relaxed mb-6">{selectedProject.description}</p>}
+                {selectedProject.description && <p className="text-foreground leading-relaxed mb-6">{selectedProject.description}</p>}
                 
                 <div>
                   <h4 className="text-lg font-bold mb-3 text-foreground">Tech Stack</h4>

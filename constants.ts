@@ -58,7 +58,7 @@ export const PROJECTS: Project[] = [
     id: 'sollah-project',
     title: 'Sollah',
     category: Category.WEB_DESIGN_DEVELOPMENT,
-    image: '/projects/WEB.png',
+    image: '/projects/Gemini_Generated_Image_ainxxxainxxxainx.png',
     description: 'A prayer time management app that allows Muslims to manually update solat times and automatically generates beautiful flyers to share across the community.',
     link: 'https://sollah.netlify.app/',
     technologies: ['React', 'Web Development', 'Automated Design']
@@ -67,7 +67,7 @@ export const PROJECTS: Project[] = [
     id: 'almuhaajirun-project',
     title: 'Al-Muhaajirun Institute',
     category: Category.WEB_DESIGN_DEVELOPMENT,
-    image: '/projects/UI UX.png',
+    image: '/projects/WEB.png',
     description: 'An educational institute website dedicated to Islamic knowledge, calling Muslims to seek knowledge and spend in the cause of Allah through Dawah.',
     link: 'https://almuhaajirun.netlify.app/',
     technologies: ['React', 'Web Development', 'UI/UX Design']
@@ -109,7 +109,7 @@ export const PROJECTS: Project[] = [
     title: 'Large Poster Display',
     category: Category.GRAPHICS,
     image: '/projects/large-poster-on-wall.png',
-    description: 'Impactful poster design with bold imagery and compelling messaging.',
+    description: 'Large poster mockup on a wall — a poster design showcased in a real-world display.',
     technologies: ['Poster Design', 'Print Media']
   },
   {
@@ -143,6 +143,46 @@ export const PROJECTS: Project[] = [
     image: '/projects/sky-outdoor-nillboard-mockup(3).png',
     description: 'Large-format outdoor advertising design with maximum visual impact.',
     technologies: ['Billboard Design', 'Outdoor Advertising']
+  },
+  {
+    id: 'pizza-box-logo',
+    title: 'Pizza Box Logo',
+    category: Category.GRAPHICS,
+    image: '/projects/closed-pizza-box(1).png',
+    description: 'Packaging mockup showing my logo on a pizza box — this is a logo application for brand identity.',
+    technologies: ['Logo Design', 'Packaging']
+  },
+  {
+    id: 'branding-al-muhaajirun',
+    title: 'Al-Muhaajirun Branding',
+    category: Category.GRAPHICS,
+    image: '/projects/branding for al-muhajirun.png',
+    description: 'Brand identity work for Al-Muhaajirun — logo, color palette and applied branding as the name indicates.',
+    technologies: ['Branding', 'Identity']
+  },
+  {
+    id: 'branding-ihsan',
+    title: 'Ihsan Branding',
+    category: Category.GRAPHICS,
+    image: '/projects/branding for ihsan for.png',
+    description: 'Complete branding package for Ihsan — logos, mockups and visual language aligned to the client name.',
+    technologies: ['Branding', 'Identity']
+  },
+  {
+    id: 'branding-nova',
+    title: 'Nova Branding',
+    category: Category.GRAPHICS,
+    image: '/projects/branding for nova .png',
+    description: 'Visual identity and branding for Nova — clean marks and applied examples as suggested by the file name.',
+    technologies: ['Branding', 'Identity']
+  },
+  {
+    id: 'personal-logo',
+    title: 'Personal Logo',
+    category: Category.GRAPHICS,
+    image: '/projects/mylogo.png',
+    description: 'My personal logo used across brand mockups and identity materials.',
+    technologies: ['Logo', 'Branding']
   }
     ];export const PROCESS_STEPS: Step[] = [
   { id: 1, title: 'Discovery', description: 'Detailed assessment of business goals, users, and technical constraints to align scope.' },
