@@ -226,8 +226,8 @@ export const TRAINING = {
   phone: '+234 901 203 9810',
   title: 'Enroll Now: Web, Software, AI & Graphics Design Training',
   description: 'Hands-on training now open! Topics include Web Design, Web Development, Software Development, AI fundamentals, and Graphics Design. Flexible schedules, practical projects, and portfolio-ready outcomes.',
-  delayMs: 4000,
-  showEveryVisit: false
+  delayMs: 3000,
+  showEveryVisit: true
 };
 // Whether the training CTA should block site interaction when visible (modal).
 // Set to `false` to allow continuing to browse while the toast is visible.

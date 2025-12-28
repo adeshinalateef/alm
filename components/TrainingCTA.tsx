@@ -5,70 +5,101 @@ import { TRAINING, TRAINING_CONFIG } from '../constants';
 
 const TrainingCTA: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [sessionCount, setSessionCount] = useState(0);
+
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+    try {
+      if (sessionCount <= 2) {
+        localStorage.setItem(`trainingCtaSeen_${sessionCount}`, 'true');
+      }
+    } catch {}
+  }, [sessionCount]);
 
   const openIfAllowed = useCallback(() => {
     if (!TRAINING.enabled) return;
     try {
-      const hasBeenSeen = typeof window !== 'undefined' ? localStorage.getItem('trainingCtaSeen') : null;
+      if (sessionCount >= 3) return;
+      const hasBeenSeen = localStorage.getItem(`trainingCtaSeen_${sessionCount}`);
       if (hasBeenSeen && !TRAINING.showEveryVisit) return;
-    } catch {
-      // localStorage may be blocked; proceed to show
-    }
+    } catch {}
     setIsOpen(true);
-  }, []);
+    setSessionCount(prev => prev + 1);
+  }, [sessionCount]);
 
   useEffect(() => {
     if (!TRAINING.enabled) return;
 
-    const hasBeenSeen = typeof window !== 'undefined' ? localStorage.getItem('trainingCtaSeen') : null;
-    if (hasBeenSeen && !TRAINING.showEveryVisit) {
-      return;
-    }
-
-    // Timed trigger
-    const timer = setTimeout(() => {
-      openIfAllowed();
-    }, TRAINING.delayMs);
-
-    // Fallback trigger in case other triggers don't fire (e.g., no scroll/exit-intent)
-    const fallback = setTimeout(() => {
-      openIfAllowed();
-    }, Math.max(TRAINING.delayMs + 10000, 12000));
-
-    // Scroll depth trigger (50%)
-    const onScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      if (docHeight > 0 && scrollTop / docHeight > 0.5) {
+    let scrollTimer: ReturnType<typeof setTimeout> | null = null;
+    const onFirstScroll = () => {
+      if (scrollTimer !== null) return;
+      scrollTimer = setTimeout(() => {
         openIfAllowed();
-        window.removeEventListener('scroll', onScroll);
-      }
+      }, TRAINING.delayMs);
+      window.removeEventListener('scroll', onFirstScroll);
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
 
-    // Exit-intent trigger (mouse leaves top viewport)
     const onMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 0) {
         openIfAllowed();
         window.removeEventListener('mouseout', onMouseLeave);
       }
     };
+
+    const fallback = setTimeout(() => {
+      openIfAllowed();
+    }, Math.max(TRAINING.delayMs + 10000, 12000));
+    
+    window.addEventListener('scroll', onFirstScroll, { passive: true });
     window.addEventListener('mouseout', onMouseLeave);
 
+    let interval: ReturnType<typeof setInterval> | null = null;
+    if (sessionCount > 0 && sessionCount < 3) {
+      interval = setInterval(() => {
+        openIfAllowed();
+      }, 60000); // 1 minute
+    }
+
+
     return () => {
-      clearTimeout(timer);
+      if (scrollTimer) clearTimeout(scrollTimer);
       clearTimeout(fallback);
-      window.removeEventListener('scroll', onScroll);
+      if (interval) clearInterval(interval);
+      window.removeEventListener('scroll', onFirstScroll);
       window.removeEventListener('mouseout', onMouseLeave);
     };
-  }, [openIfAllowed]);
+  }, [openIfAllowed, sessionCount]);
 
-  const handleClose = () => {
-    setIsOpen(false);
-    try {
-      localStorage.setItem('trainingCtaSeen', 'true');
-    } catch {}
-  };
+  useEffect(() => {
+    if (!isOpen) return;
+
+    let exitTimer: ReturnType<typeof setTimeout> | null = null;
+    const resetTimer = () => {
+      if (exitTimer) clearTimeout(exitTimer);
+      exitTimer = setTimeout(() => {
+        handleClose();
+      }, 10000); // 10 seconds
+    };
+
+    const handleUserInteraction = () => {
+      resetTimer();
+    };
+
+    resetTimer();
+
+    window.addEventListener('click', handleUserInteraction);
+    window.addEventListener('mousemove', handleUserInteraction);
+    window.addEventListener('scroll', handleUserInteraction);
+    window.addEventListener('keydown', handleUserInteraction);
+
+    return () => {
+      if (exitTimer) clearTimeout(exitTimer);
+      window.removeEventListener('click', handleUserInteraction);
+      window.removeEventListener('mousemove', handleUserInteraction);
+      window.removeEventListener('scroll', handleUserInteraction);
+      window.removeEventListener('keydown', handleUserInteraction);
+    };
+  }, [isOpen, handleClose]);
 
   return (
     <AnimatePresence>
@@ -88,12 +119,12 @@ const TrainingCTA: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 120, damping: 14 }}
-            className="fixed bottom-4 right-4 z-50 w-[calc(100%-2rem)] max-w-md rounded-2xl backdrop-blur-xl bg-white/10 p-6 shadow-2xl border border-white/20"
+            className="fixed bottom-4 right-4 z-50 w-[calc(100%-2rem)] max-w-md rounded-2xl backdrop-blur-xl bg-white/95 dark:bg-gray-800/95 p-6 shadow-2xl border border-white/20"
           >
             <button
               onClick={handleClose}
               aria-label="Close training promo"
-              className="absolute top-3 right-3 p-1.5 rounded-full hover:bg-white/20 transition"
+              className="absolute top-3 right-3 p-1.5 rounded-full text-gray-800 dark:text-gray-200 hover:bg-white/20 transition"
             >
               <X size={18} />
             </button>
@@ -102,12 +133,12 @@ const TrainingCTA: React.FC = () => {
               <div className="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-500 text-black">
                 <Sparkles size={20} />
               </div>
-              <h3 className="text-xl sm:text-2xl font-heading font-extrabold leading-tight">
+              <h3 className="text-xl sm:text-2xl font-heading font-extrabold leading-tight text-gray-800 dark:text-gray-200">
                 {TRAINING.title}
               </h3>
             </div>
 
-            <p className="text-sm sm:text-base text-white/80 mb-5">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-5">
               {TRAINING.description}
             </p>
 
@@ -122,7 +153,7 @@ const TrainingCTA: React.FC = () => {
             </a>
 
             {TRAINING.phone && (
-              <p className="mt-3 text-xs text-white/60 text-center">
+              <p className="mt-3 text-xs text-gray-500 dark:text-gray-400 text-center">
                 Or call {TRAINING.phone}
               </p>
             )}
