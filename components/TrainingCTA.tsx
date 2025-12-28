@@ -1,74 +1,31 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, MessageCircle, Sparkles } from 'lucide-react';
 import { TRAINING, TRAINING_CONFIG } from '../constants';
 
 const TrainingCTA: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [sessionCount, setSessionCount] = useState(0);
+  const appearanceCount = useRef(0);
+
+  const showCTA = useCallback(() => {
+    if (appearanceCount.current < 3) {
+      setIsOpen(true);
+      appearanceCount.current++;
+    }
+  }, []);
 
   const handleClose = useCallback(() => {
     setIsOpen(false);
-    try {
-      if (sessionCount <= 2) {
-        localStorage.setItem(`trainingCtaSeen_${sessionCount}`, 'true');
-      }
-    } catch {}
-  }, [sessionCount]);
-
-  const openIfAllowed = useCallback(() => {
-    if (!TRAINING.enabled) return;
-    try {
-      if (sessionCount >= 3) return;
-      const hasBeenSeen = localStorage.getItem(`trainingCtaSeen_${sessionCount}`);
-      if (hasBeenSeen && !TRAINING.showEveryVisit) return;
-    } catch {}
-    setIsOpen(true);
-    setSessionCount(prev => prev + 1);
-  }, [sessionCount]);
+    if (appearanceCount.current < 3) {
+      setTimeout(showCTA, 40000); // 40 seconds
+    }
+  }, [showCTA]);
 
   useEffect(() => {
     if (!TRAINING.enabled) return;
-
-    let scrollTimer: ReturnType<typeof setTimeout> | null = null;
-    const onFirstScroll = () => {
-      if (scrollTimer !== null) return;
-      scrollTimer = setTimeout(() => {
-        openIfAllowed();
-      }, TRAINING.delayMs);
-      window.removeEventListener('scroll', onFirstScroll);
-    };
-
-    const onMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
-        openIfAllowed();
-        window.removeEventListener('mouseout', onMouseLeave);
-      }
-    };
-
-    const fallback = setTimeout(() => {
-      openIfAllowed();
-    }, Math.max(TRAINING.delayMs + 10000, 12000));
-    
-    window.addEventListener('scroll', onFirstScroll, { passive: true });
-    window.addEventListener('mouseout', onMouseLeave);
-
-    let interval: ReturnType<typeof setInterval> | null = null;
-    if (sessionCount > 0 && sessionCount < 3) {
-      interval = setInterval(() => {
-        openIfAllowed();
-      }, 60000); // 1 minute
-    }
-
-
-    return () => {
-      if (scrollTimer) clearTimeout(scrollTimer);
-      clearTimeout(fallback);
-      if (interval) clearInterval(interval);
-      window.removeEventListener('scroll', onFirstScroll);
-      window.removeEventListener('mouseout', onMouseLeave);
-    };
-  }, [openIfAllowed, sessionCount]);
+    const initialTimeout = setTimeout(showCTA, TRAINING.delayMs);
+    return () => clearTimeout(initialTimeout);
+  }, [showCTA]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -119,7 +76,7 @@ const TrainingCTA: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 120, damping: 14 }}
-            className="fixed bottom-4 right-4 z-50 w-[calc(100%-2rem)] max-w-md rounded-2xl backdrop-blur-xl bg-white/95 dark:bg-gray-800/95 p-6 shadow-2xl border border-white/20"
+            className="fixed bottom-4 right-4 z-50 w-[calc(100%-2rem)] max-w-md rounded-2xl backdrop-blur-xl bg-white/95 dark:bg-gray-800/95 p-8 shadow-2xl border border-white/20"
           >
             <button
               onClick={handleClose}
@@ -146,7 +103,7 @@ const TrainingCTA: React.FC = () => {
               href={TRAINING.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full px-5 py-3 rounded-xl font-bold text-center inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-400 to-cyan-400 text-black shadow-lg hover:shadow-emerald-500/30 hover:from-emerald-300 hover:to-cyan-300 transition"
+              className="w-full px-5 py-3 rounded-xl font-bold text-center inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-400 to-cyan-400 text-black shadow-lg hover:shadow-emerald-500/30 hover:from-emerald-300 hover:to-cyan-300 transition mb-3"
             >
               <MessageCircle size={20} />
               Register on WhatsApp
